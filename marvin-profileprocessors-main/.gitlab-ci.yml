@@ -1,0 +1,32 @@
+image: mcr.microsoft.com/dotnet/sdk:6.0
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - cd src/$PROJECT_NAME
+    - dotnet nuget add source "${CI_API_V4_URL}/groups/57765526/-/packages/nuget/index.json" --name gitlab --username gitlab-ci-token --password $CI_JOB_TOKEN --store-password-in-clear-text
+    - dotnet restore --interactive
+  artifacts:
+    paths:
+      - bin/Release
+  only:
+    - main
+  environment: production
+  
+deploy:
+  stage: deploy
+  script:
+    - cd src/$PROJECT_NAME/Marvin.ProfileProcessors
+    - ls -a
+    - dotnet nuget add source "${CI_API_V4_URL}/groups/57765526/-/packages/nuget/index.json" --name gitlab --username gitlab-ci-token --password $CI_JOB_TOKEN --store-password-in-clear-text
+    - dotnet nuget add source "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/nuget/index.json" --name deploy_gitlab --username gitlab-ci-token --password $CI_JOB_TOKEN --store-password-in-clear-text
+    - dotnet pack -c Release
+    - ls
+    - dotnet nuget push "bin/Release/*.nupkg" --source deploy_gitlab
+  only:
+    - main
+  environment: production

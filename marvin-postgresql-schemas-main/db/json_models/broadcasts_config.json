@@ -1,0 +1,10 @@
+{
+  "channel_id": "string, nullable, discord channel id",
+  "tracked_items": "array of UInt32, empty array as default, null isn't valid",
+  "tracked_triumphs": "array of UInt32, empty array as default, null isn't valid",
+  "is_broadcasting": "boolean",
+  "clan_track_mode": "tracking_mode",
+  "item_track_mode": "broadcast_mode",
+  "title_track_mode": "tracking_mode",
+  "triumph_track_mode": "broadcast_mode"
+}

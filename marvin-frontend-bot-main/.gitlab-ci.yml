@@ -1,0 +1,21 @@
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  image: node:16.13-alpine
+  environment: production
+  before_script: 
+    - apk update -qq
+    - apk add -qq rsync
+    - apk add -qq git
+    - 'which ssh-agent || ( apk add -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - rsync -avzp --exclude 'launch.sh' ./ $SSH_USERNAME@$SSH_HOSTNAME:/home/marvin-frontend-bot/
+    - ssh $SSH_USERNAME@$SSH_HOSTNAME "cd /home/marvin-frontend-bot; pm2 stop 2; sleep 10; pm2 restart 2"
+  only:
+    - main

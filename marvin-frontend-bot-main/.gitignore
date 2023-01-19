@@ -1,0 +1,11 @@
+# Node Modules (obviously)
+node_modules
+
+# Secrets
+PrivateKey.ppk
+.env
+
+# Datasets
+src/manifest/*.json
+build/
+/.idea/.idea.Marvin-vPostgres.dir/.idea/

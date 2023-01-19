@@ -1,0 +1,11 @@
+﻿{
+  "Title": 0,
+  "GildedTitle": 1,
+  "Triumph": 2,
+  "Collectible": 3,
+  "ClanLevel": 4,
+  "ClanName": 5,
+  "ClanCallSign": 6,
+  "RecordStepObjectiveCompleted": 7,
+  "ClanScanFinished": 8
+}

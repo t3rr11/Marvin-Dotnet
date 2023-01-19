@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <PackageVersion>1.1.0</PackageVersion>
+        <AssemblyVersion>1.1.0</AssemblyVersion>
+        <FileVersion>1.1.0</FileVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="DotNetBungieAPI" Version="2.5.1" />
+        <PackageReference Include="DotNetBungieAPI.HashReferences" Version="1.12.0" />
+        <PackageReference Include="Marvin.DbAccess" Version="1.1.0" />
+    </ItemGroup>
+
+</Project>

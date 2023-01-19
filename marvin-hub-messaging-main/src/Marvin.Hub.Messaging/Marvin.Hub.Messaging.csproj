@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AssemblyVersion>1.3.0.0</AssemblyVersion>
+        <FileVersion>1.3.0.0</FileVersion>
+        <Version>$(AssemblyVersion)</Version>
+        <Title>Marvin.Hub.Messaging</Title>
+        <Description>Hub contracts for interacting with Marvin Clan Queue Hub</Description>
+        <PackageVersion>1.3.0.0</PackageVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Marvin.DbAccess" Version="1.0.0" />
+    </ItemGroup>
+
+</Project>

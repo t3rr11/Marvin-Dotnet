@@ -1,0 +1,9 @@
+﻿{
+  "xur": "tracking_mode",
+  "adas": "tracking_mode",
+  "gunsmiths": "tracking_mode",
+  "channel_id": "string, nullable, discord channel id",
+  "wellspring": "tracking_mode",
+  "lost_sectors": "tracking_mode",
+  "is_announcing": "boolean"
+}

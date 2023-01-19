@@ -1,0 +1,5 @@
+﻿{
+  "completions": "string (number, valid when on collectible)",
+  "gildedCount": "string (number, valid when on gilded title)",
+  "parentTitleHash": "string (number, valid when on gilded title)"
+}

@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Marvin.Application.Sdk", "Marvin.Application.Sdk\Marvin.Application.Sdk.csproj", "{B0E2D6E0-F281-4893-A287-528134D3E44D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleApplication", "ExampleApplication\ExampleApplication.csproj", "{531684F9-D48A-4132-88DD-36BEC6AFAD1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B0E2D6E0-F281-4893-A287-528134D3E44D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0E2D6E0-F281-4893-A287-528134D3E44D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0E2D6E0-F281-4893-A287-528134D3E44D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0E2D6E0-F281-4893-A287-528134D3E44D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{531684F9-D48A-4132-88DD-36BEC6AFAD1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{531684F9-D48A-4132-88DD-36BEC6AFAD1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{531684F9-D48A-4132-88DD-36BEC6AFAD1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{531684F9-D48A-4132-88DD-36BEC6AFAD1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B42F7088-A922-46D4-8A77-CAAE023C53F0}
+	EndGlobalSection
+EndGlobal

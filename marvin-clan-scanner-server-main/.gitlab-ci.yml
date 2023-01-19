@@ -1,0 +1,79 @@
+image: node:16.13-alpine
+
+stages:
+  - deploy to server 1
+  - deploy to server 2
+  - deploy to server 3 - prod
+  - deploy to server 4 - prod
+
+deploy to server 1:
+  stage: deploy to server 1
+  environment: staging
+  before_script: 
+    - apk update -qq
+    - apk add -qq rsync
+    - apk add -qq git
+    - 'which ssh-agent || ( apk add -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY_SERVER_1")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - rsync -avzp --exclude='*.sh' ./src/ $SSH_USERNAME_SERVER_1@$SSH_HOSTNAME_SERVER_1:/home/Scanner
+    - ssh $SSH_USERNAME_SERVER_1@$SSH_HOSTNAME_SERVER_1 "cd /home/Scanner; ./startup.sh>log.txt"
+  only:
+    - main
+
+deploy to server 2:
+  stage: deploy to server 2
+  environment: staging
+  before_script: 
+    - apk update -qq
+    - apk add -qq rsync
+    - apk add -qq git
+    - 'which ssh-agent || ( apk add -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY_SERVER_2")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - rsync -avzp --exclude='*.sh' ./src/ $SSH_USERNAME_SERVER_2@$SSH_HOSTNAME_SERVER_2:/home/Scanner
+    - ssh $SSH_USERNAME_SERVER_2@$SSH_HOSTNAME_SERVER_2 "cd /home/Scanner; ./startup.sh>log.txt"
+  only:
+    - main
+
+deploy to server 3 - prod:
+  stage: deploy to server 3 - prod
+  environment: production
+  before_script: 
+    - apk update -qq
+    - apk add -qq rsync
+    - apk add -qq git
+    - 'which ssh-agent || ( apk add -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY_SERVER_1")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - rsync -avzp --exclude='*.sh' ./src/ $SSH_USERNAME_SERVER_1@$SSH_HOSTNAME_SERVER_3:/home/Scanner
+    - ssh $SSH_USERNAME_SERVER_1@$SSH_HOSTNAME_SERVER_3 "cd /home/Scanner; ./startup.sh>log.txt"
+  only:
+    - production
+
+deploy to server 4 - prod:
+  stage: deploy to server 4 - prod
+  environment: production
+  before_script: 
+    - apk update -qq
+    - apk add -qq rsync
+    - apk add -qq git
+    - 'which ssh-agent || ( apk add -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY_SERVER_1")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - rsync -avzp --exclude='*.sh' ./src/ $SSH_USERNAME_SERVER_2@$SSH_HOSTNAME_SERVER_4:/home/Scanner
+    - ssh $SSH_USERNAME_SERVER_2@$SSH_HOSTNAME_SERVER_4 "cd /home/Scanner; ./startup.sh>log.txt"
+  only:
+    - production

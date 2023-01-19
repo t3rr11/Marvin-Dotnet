@@ -1,0 +1,41 @@
+image: node:16.13-alpine
+
+stages:
+  - deploy_staging
+  - deploy_prod
+
+deploy:
+  stage: deploy_staging
+  environment: staging
+  before_script: 
+    - apk update -qq
+    - apk add -qq rsync
+    - apk add -qq git
+    - 'which ssh-agent || ( apk add -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - rsync -avzp --exclude='*.sh' ./src/ $SSH_USERNAME@$SSH_HOSTNAME:/home/Hub
+    - ssh $SSH_USERNAME@$SSH_HOSTNAME "cd /home/Hub; ./startup.sh>log.txt"
+  only:
+    - main
+
+deploy_prod:
+  stage: deploy_prod
+  environment: production
+  before_script: 
+    - apk update -qq
+    - apk add -qq rsync
+    - apk add -qq git
+    - 'which ssh-agent || ( apk add -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - rsync -avzp --exclude='*.sh' ./src/ $SSH_USERNAME@$SSH_PROD_HOSTNAME:/home/Hub
+    - ssh $SSH_USERNAME@$SSH_PROD_HOSTNAME "cd /home/Hub; ./startup.sh>log.txt"
+  only:
+    - production
