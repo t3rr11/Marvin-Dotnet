@@ -1,6 +1,6 @@
 # Source code for Marvin
 
-I have exluded the websites, express server and admin tools to avoid clones.
+I have exluded the websites, express server and admin tools to avoid malicious clones.
 
 The frontend is written in Typescript and can be found in this repo: `marvin-fontend-bot-main`.
 The backend is written in .NET Core 7 and is split into many different micro packages so hosting it will be quite a complex job and I wish you the best of luck.
