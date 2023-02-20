@@ -13,6 +13,6 @@ The codebase is free as the project is/has come to an end as of March 2023.
 
 However if you still want to donate or feel that this codebase helps you get started on your own bot, etc, A few dollarydoos can make a difference (who doesn't like money) so I'll throw my links here but again, code is free, no obligations to donate.
 
-https://paypal.me/guardianstats
+https://paypal.me/heylookitworks
 
 ## 19 Jan 2023 - Terrii
