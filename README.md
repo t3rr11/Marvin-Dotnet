@@ -7,7 +7,7 @@ The backend is written in .NET Core 7 and is split into many different micro pac
 
 Few things to note,
 - The database was PostgreSQL, You can find some if not all the table structures in `marvin-postgresql-schemas-main/tables`.
-- You'll find a repo `marvin.discord.bot-main` this was a rewrite we were working on to rewrite the bot in .NET Core 7 and has work in it but is not complete and if you want to replicate the bot that was in production, you'll want to use `marvin-fontend-bot-main` which is written in Typescript.
+- You'll find a repo `marvin.discord.bot-main` this was a rewrite we were working on to rewrite the bot in .NET Core 7 and has work in it but is not complete and if you want to replicate the bot that was in production, you'll want to use `marvin-frontend-bot-main` which is written in Typescript.
 
 The codebase is free as the project is/has come to an end as of March 2023.
 
